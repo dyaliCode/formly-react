@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import "./App.css";
 
-import { Formly, IField } from "react-formly-light";
+import { Formly, IField } from "formly-react";
 
 // Fetch Users
 const fetchUsers = async () => {

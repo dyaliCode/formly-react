@@ -1,5 +1,5 @@
 import React from "react";
-import type { IField, IForm } from "./types";
+import type { IField } from "./types";
 
 // *
 export function inArray(arr: Array<any>, element: any): boolean {

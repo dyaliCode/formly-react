@@ -31,7 +31,6 @@ const Formly: FunctionComponent<IFormProps> = (props: IFormProps) => {
 
   // * Init formly.
   useEffect(() => {
-    console.log("111", 111);
     // ! Before all check if there is a duplicated field.
     const is_duplicated: boolean = isFieldDuplicated(props.fields);
     setFieldDuplicated(is_duplicated);

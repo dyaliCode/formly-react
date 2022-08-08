@@ -1,6 +1,6 @@
 import type { NextPage } from "next";
 import { useEffect, useState } from "react";
-import { Formly, type IField } from "react-formly-light";
+import { Formly, type IField } from "formly-react";
 
 const classField =
   "block mb-2 p-2 w-full text-xs text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400";

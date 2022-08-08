@@ -1,4 +1,3 @@
-import React from "react";
 import { FunctionComponent } from "react";
 import {
   createComponentWithPrefix,
@@ -7,7 +6,6 @@ import {
   IBtnReset,
 } from "../../utils";
 import Button from "./Button";
-import Submit from "./Submit";
 
 type IProps = {
   btnSubmit?: IBtnSubmit;
