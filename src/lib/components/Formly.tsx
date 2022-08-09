@@ -28,6 +28,7 @@ const Formly: FunctionComponent<IFormProps> = (props: IFormProps) => {
   const [_fields, _setFields] = useState<IField[]>(props.fields);
   const [_values, _setValues] = useState<any>({});
   const [fieldDuplicated, setFieldDuplicated] = useState<boolean>(false);
+  console.log("11", 11);
 
   // * Init formly.
   useEffect(() => {
