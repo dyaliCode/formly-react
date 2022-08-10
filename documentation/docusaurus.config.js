@@ -13,7 +13,7 @@ module.exports = {
   trailingSlash: false,
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
-  favicon: "img/favicon.ico",
+  // favicon: "img/favicon.ico",
   organizationName: "formlyjs",
   projectName: "formlyjs.github.io",
   themeConfig: {
@@ -33,23 +33,6 @@ module.exports = {
           position: "left"
           
         },
-        // {
-        //   to: "quickstart/install",
-        //   label: "Docs",
-        //   position: "left"
-          
-        // },
-        // {
-        //   to: "Features",
-        //   label: "Features",
-        //   position: "left"
-          
-        // },
-        // {
-        //   to: "themes/themelist",
-        //   label: "Themes",
-        //   position: "left"
-        // },
         {
           href: "https://github.com/dyaliCode/formlyjs",
           position: "right",

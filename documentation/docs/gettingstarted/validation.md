@@ -87,7 +87,7 @@ const fields = [{
       },
     ];
 
-    // * custom rules
+    // * custom rule.
     async function notEqual(values: IValue): Promise<boolean> {
       if (values) {
         if (values.firstname === values.lastname) {
@@ -97,7 +97,7 @@ const fields = [{
       return true;
     }
 
-    // *
+    // * custom rule.
     async function onTapMessage(values: IValue): Promise<boolean> {
       if (values) {
         if (values.message === "hey i am reactjs") {

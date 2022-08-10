@@ -8,7 +8,7 @@ Is not depend to any libraries CSS, so you can integrate with any frameworks lik
 
 ## Bootstrap
 
-```typescript
+```tsx
 const fields: IField[] = [
   {
     type: "input",
@@ -16,7 +16,8 @@ const fields: IField[] = [
     attributes: {
       type: "email",
       id: "email",
-      classes: ["form-control"], // classes name for bootstrap
+      // highlight-next-line
+      classes: ["form-control"],
       placeholder: "Tap your email",
     },
     rules: ["required", "email"],
@@ -25,11 +26,41 @@ const fields: IField[] = [
     },
   },
 ];
+
+<Formly
+  fields={fields}
+  form_name={form_name}
+  btnSubmit={{
+    // highlight-next-line
+    classes: ["class-btn-submit"],
+    prefix: {
+      tag: "div",
+      // highlight-next-line
+      classes: ["class-wrapper-btn-submit"],
+    },
+  }}
+  btnReset={{
+    // highlight-next-line
+    classes: ["class-btn-submit"],
+    prefix: {
+      tag: "div",
+      // highlight-next-line
+      classes: ["class-wrapper-btn-reset"],
+    },
+  }}
+  buttonsAction={{
+    tag: "div",
+    // highlight-next-line
+    classes: ["class-wrapper-btn-actions"],
+  }}
+  // highlight-next-line
+  classes={["class-form-a", "class-form-b"]}
+/>;
 ```
 
 ## Tailwindcss
 
-```typescript
+```tsx
 const fields: IField[] = [
   {
     type: "input",
@@ -37,7 +68,8 @@ const fields: IField[] = [
     attributes: {
       type: "email",
       id: "email",
-      classes: ["input px-4 py-3 rounded-full"], // classes name for bootstrap
+      // highlight-next-line
+      classes: ["input px-4 py-3 rounded-full"],
       placeholder: "Tap your email",
     },
     rules: ["required", "email"],
@@ -46,4 +78,33 @@ const fields: IField[] = [
     },
   },
 ];
+<Formly
+  fields={fields}
+  form_name={form_name}
+  btnSubmit={{
+    // highlight-next-line
+    classes: ["class-btn-submit"],
+    prefix: {
+      tag: "div",
+      // highlight-next-line
+      classes: ["class-wrapper-btn-submit"],
+    },
+  }}
+  btnReset={{
+    // highlight-next-line
+    classes: ["class-btn-submit"],
+    prefix: {
+      tag: "div",
+      // highlight-next-line
+      classes: ["class-wrapper-btn-reset"],
+    },
+  }}
+  buttonsAction={{
+    tag: "div",
+    // highlight-next-line
+    classes: ["class-wrapper-btn-actions"],
+  }}
+  // highlight-next-line
+  classes={["class-form-a", "class-form-b"]}
+/>;
 ```

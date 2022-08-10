@@ -12,7 +12,7 @@ function BannerText() {
 
       <div className="bannerBtns">
         <Link
-          to="/quickstart/install#pre-requisites"
+          to="/gettingstarted/quickstart"
           style={{ textDecoration: "none" }}
         >
           <button className="banner_btn">Getting Started</button>

@@ -97,7 +97,6 @@ With Svelte Formly you can generate a dynamic forms with custom rules and styles
           placeholder: "Last name",
           autocomplete: "off",
           autocorrect: "off",
-          classes: [classField],
           classes: ["form-control"],
         },
         prefix: {
@@ -134,7 +133,7 @@ With Svelte Formly you can generate a dynamic forms with custom rules and styles
         }}
         btnReset={{
           text: "Cancel",
-          classes: ['class-btn-submit'],
+          classes: ['class-btn-reset'],
           prefix: {
             tag: "div",
             classes: ["class-wrapper-btn-reset"],
