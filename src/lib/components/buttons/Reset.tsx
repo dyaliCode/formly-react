@@ -4,7 +4,10 @@ import { createComponentWithPrefix, IBtnReset } from "../../utils";
 const Reset: FunctionComponent<IBtnReset> = (props: IBtnReset) => {
   const renderButton = () => {
     return (
-      <button className={props.classes ?? undefined} type="reset">
+      <button
+        className={props.classes ? props.classes.join(" ") : undefined}
+        type="reset"
+      >
         {props.text ?? "Reset"}
       </button>
     );

@@ -64,9 +64,10 @@ With Svelte Formly you can generate a dynamic forms with custom rules and styles
   <TabItem value="react" label="React">
 
   ```tsx
+  import * as React from 'react';
   import { Formly, IField, IValue } from "formly-react";
 
-  const Usage = () => {
+  const Usage: React.FC = () => {
     // * Unique form name.
     const form_name = "formly_usage";
 
@@ -143,6 +144,7 @@ With Svelte Formly you can generate a dynamic forms with custom rules and styles
           tag: "div",
           classes: ["class-wrapper-btn-actions"],
         }}
+        classes={["class-form-a", "class-form-b"]}
       />
     );
   };
@@ -172,5 +174,4 @@ With Svelte Formly you can generate a dynamic forms with custom rules and styles
 
 ## Result
 
-- [Here](https://replit.com/join/fibuivhjgt-dyalicode)
-  <!-- https://replit.com/join/fibuivhjgt-dyalicode -->
+- [Here](https://replit.com/@dyaliCode/Formly-React-Usage?v=1)

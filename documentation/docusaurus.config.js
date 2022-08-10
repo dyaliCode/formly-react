@@ -8,14 +8,14 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 module.exports = {
   title: "FormlyJS",
   tagline: "A good solution to generate dynamic forms using rules, styles and more.",
-  url: "https://nvchad.github.io/",
+  url: "https://formlyjs.github.io/",
   baseUrl: "/",
   trailingSlash: false,
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
-  organizationName: "NvChad",
-  projectName: "nvchad.github.io",
+  organizationName: "formlyjs",
+  projectName: "formlyjs.github.io",
   themeConfig: {
     colorMode: {
       respectPrefersColorScheme: true,
@@ -23,7 +23,7 @@ module.exports = {
     navbar: {
       title: "FormlyJS",
       logo: {
-        alt: "NvChad Logo",
+        alt: "Formlyjs Logo",
         src: "img/logo-2.png",
       },
       items: [
@@ -33,25 +33,25 @@ module.exports = {
           position: "left"
           
         },
-        {
-          to: "quickstart/install",
-          label: "Docs",
-          position: "left"
+        // {
+        //   to: "quickstart/install",
+        //   label: "Docs",
+        //   position: "left"
           
-        },
-        {
-          to: "Features",
-          label: "Features",
-          position: "left"
+        // },
+        // {
+        //   to: "Features",
+        //   label: "Features",
+        //   position: "left"
           
-        },
+        // },
+        // {
+        //   to: "themes/themelist",
+        //   label: "Themes",
+        //   position: "left"
+        // },
         {
-          to: "themes/themelist",
-          label: "Themes",
-          position: "left"
-        },
-        {
-          href: "https://github.com/NvChad/NvChad",
+          href: "https://github.com/dyaliCode/formlyjs",
           position: "right",
         },
       ],

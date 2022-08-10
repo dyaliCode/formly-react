@@ -4,7 +4,10 @@ import { createComponentWithPrefix, IBtnSubmit } from "../../utils";
 const Submit: FunctionComponent<IBtnSubmit> = (props: IBtnSubmit) => {
   const renderButton = () => {
     return (
-      <button className={props.classes ?? undefined} type="submit">
+      <button
+        className={props.classes ? props.classes.join(" ") : undefined}
+        type="submit"
+      >
         {props.text ?? "Submit"}
       </button>
     );

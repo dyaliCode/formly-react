@@ -4,7 +4,10 @@ import { createComponentWithPrefix, IButton } from "../../utils";
 const Button: FunctionComponent<IButton> = (props: IButton) => {
   const renderButton = () => {
     return (
-      <button className={props.classes ?? undefined} type={props.type}>
+      <button
+        className={props.classes ? props.classes.join(" ") : undefined}
+        type={props.type}
+      >
         {props.text}
       </button>
     );

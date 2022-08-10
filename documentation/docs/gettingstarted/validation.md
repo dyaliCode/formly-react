@@ -27,19 +27,19 @@ const fields = [{
 }];
 ```
 
-## Usage
+## Custom
 
 ````mdx-code-block
 <Tabs>
   <TabItem value="react" label="React">
 
   ```tsx
-  import * as React from 'react'
+  import * as React from 'react';
   import { Formly, IField, IValue } from "formly-react";
 
-  const Usage = () => {
+  const Validation: React.FC = () => {
     // * Unique form name.
-    const form_name = "formly_usage";
+    const form_name = "formly_validation";
 
     // * Fields.
     const fields: IField[] = [
@@ -50,6 +50,9 @@ const fields = [{
           id: "firstname",
           placeholder: "First name",
         },
+        prefix: {
+          tag: 'div'
+        },
         rules: ["required", "min:6"],
       },
       {
@@ -59,10 +62,11 @@ const fields = [{
           id: "lastname",
           placeholder: "Last name",
         },
-        rules: ["required", "min:6", { name: "notEqual", fnc: notEqual }],
+        prefix: {
+          tag: 'div'
+        },
+        rules: [{ name: "notEqual", fnc: notEqual }],
         messages: {
-          required: "lastname is required",
-          min: "lastname must be at least 3 characters",
           notEqual: "lastname must not be equal firstname",
         },
       },
@@ -75,11 +79,9 @@ const fields = [{
         },
         prefix: {
           tag: "div",
-          classes: ["mb-6"],
         },
-        rules: ["required", { name: "onTapMessage", fnc: onTapMessage }],
+        rules: [{ name: "onTapMessage", fnc: onTapMessage }],
         messages: {
-          required: "lastname is required",
           onTapMessage: "Should tap 'hey i am reactjs'",
         },
       },
@@ -110,7 +112,7 @@ const fields = [{
     );
   };
 
-  export default Usage;
+  export default Validation;
   ```
 
   </TabItem>
@@ -135,5 +137,4 @@ const fields = [{
 
 ## Result
 
-- [Here](https://replit.com/join/fibuivhjgt-dyalicode)
-  <!-- https://replit.com/join/fibuivhjgt-dyalicode -->
+- [Here](https://replit.com/@dyaliCode/Formly-React-Validation?v=1)

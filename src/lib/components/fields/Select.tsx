@@ -62,7 +62,9 @@ const Select: FunctionComponent<IPropsField> = ({
       value={value}
       id={field.attributes.id}
       className={
-        field.attributes.classes ? field.attributes.classes.join(" ") : ""
+        field.attributes.classes
+          ? field.attributes.classes.join(" ")
+          : undefined
       }
       required={isRequired(field)}
       disabled={field.attributes.disabled}

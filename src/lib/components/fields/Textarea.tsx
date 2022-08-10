@@ -41,7 +41,9 @@ const Input: FunctionComponent<IPropsField> = ({
     <textarea
       name={field.name}
       className={
-        field.attributes.classes ? field.attributes.classes.join(" ") : ""
+        field.attributes.classes
+          ? field.attributes.classes.join(" ")
+          : undefined
       }
       value={value}
       placeholder={field.attributes.placeholder}

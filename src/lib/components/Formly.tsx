@@ -185,7 +185,7 @@ const Formly: FunctionComponent<IFormProps> = (props: IFormProps) => {
         </p>
       ) : (
         <form
-          className={props.classes ?? undefined}
+          className={props.classes ? props.classes.join(" ") : undefined}
           ref={elForm}
           onSubmit={onSubmitHandler}
           onReset={onResetHandler}

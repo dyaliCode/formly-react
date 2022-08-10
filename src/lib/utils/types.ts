@@ -7,7 +7,7 @@ export interface IFormProps {
   get_values?: Function;
   onSubmit?: Function;
   onChange?: Function;
-  classes?: string;
+  classes?: string[];
   buttonsAction?: IPrefix;
 }
 
@@ -110,18 +110,18 @@ export interface ISubmit {
 export interface IButton {
   type: "submit" | "reset";
   text: string;
-  classes?: string;
+  classes?: string[];
   prefix?: IPrefix;
 }
 export interface IBtnSubmit {
   text?: string;
-  classes?: string;
+  classes?: string[];
   prefix?: IPrefix;
 }
 
 export interface IBtnReset {
   text?: string;
-  classes?: string;
+  classes?: string[];
   prefix?: IPrefix;
 }
 

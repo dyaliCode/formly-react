@@ -47,7 +47,9 @@ const Input: FunctionComponent<IPropsField> = ({
       value={value}
       id={field.attributes.id ? field.attributes.id : field.name}
       className={
-        field.attributes.classes ? field.attributes.classes.join(" ") : ""
+        field.attributes.classes
+          ? field.attributes.classes.join(" ")
+          : undefined
       }
       placeholder={field.attributes.placeholder}
       required={isRequired(field)}

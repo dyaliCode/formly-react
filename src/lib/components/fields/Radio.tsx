@@ -4,44 +4,44 @@ import React, {
   FunctionComponent,
   memo,
   useEffect,
-  useState
-} from 'react'
-import { IPropsField } from '../../utils'
+  useState,
+} from "react";
+import { IPropsField } from "../../utils";
 
 const Radio: FunctionComponent<IPropsField> = ({
   form_name,
   field,
-  changeValue
+  changeValue,
 }: IPropsField) => {
-  const [items, setItems] = useState<any[]>(field.extra.items ?? null)
+  const [items, setItems] = useState<any[]>(field.extra.items ?? null);
 
   // * Init.
   useEffect(() => {
     const _items = field.extra.items.map((item: any) => {
       if (field.value === item.value) {
-        item.checked = true
+        item.checked = true;
       } else {
-        item.checked = false
+        item.checked = false;
       }
-      return item
-    })
-    setItems(_items)
-  }, [field, field.value, field.extra.items])
+      return item;
+    });
+    setItems(_items);
+  }, [field, field.value, field.extra.items]);
 
   // * On input.
   const onInput: FormEventHandler<HTMLInputElement> = async (
     event: React.FormEvent<HTMLInputElement>
   ): Promise<void> => {
-    const value = event.currentTarget.value
+    const value = event.currentTarget.value;
 
     const data = {
       form_name,
       field_name: field.name,
-      value
-    }
+      value,
+    };
 
-    changeValue(data)
-  }
+    changeValue(data);
+  };
 
   return (
     <Fragment>
@@ -53,8 +53,8 @@ const Radio: FunctionComponent<IPropsField> = ({
               id={item.id}
               className={
                 field.attributes.classes
-                  ? field.attributes.classes.join(' ')
-                  : ''
+                  ? field.attributes.classes.join(" ")
+                  : undefined
               }
               value={item.value}
               name={field.name}
@@ -65,6 +65,6 @@ const Radio: FunctionComponent<IPropsField> = ({
           </Fragment>
         ))}
     </Fragment>
-  )
-}
-export default memo(Radio)
+  );
+};
+export default memo(Radio);
