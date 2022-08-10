@@ -28,7 +28,6 @@ const Formly: FunctionComponent<IFormProps> = (props: IFormProps) => {
   const [_fields, _setFields] = useState<IField[]>(props.fields);
   const [_values, _setValues] = useState<any>({});
   const [fieldDuplicated, setFieldDuplicated] = useState<boolean>(false);
-  console.log("11", 11);
 
   // * Init formly.
   useEffect(() => {
@@ -38,6 +37,7 @@ const Formly: FunctionComponent<IFormProps> = (props: IFormProps) => {
 
     async function init() {
       let values: any = currentForm.values ?? {};
+      // * Check and validate fields.
       const fields_updated = await Promise.all(
         props.fields.map(async (field: IField) => {
           values[`${field.name}`] = field.value ?? null;
@@ -51,6 +51,7 @@ const Formly: FunctionComponent<IFormProps> = (props: IFormProps) => {
         })
       );
       _setFields(fields_updated);
+
       // * Find dirty in the current form.
       const dirty = fields_updated.find((field: IField) => {
         if (field.validation) {
@@ -58,8 +59,10 @@ const Formly: FunctionComponent<IFormProps> = (props: IFormProps) => {
         }
         return false;
       });
+
       // * Set values.
       _setValues(values);
+
       // * Get form.
       const newForm = {
         ...currentForm,
@@ -67,10 +70,13 @@ const Formly: FunctionComponent<IFormProps> = (props: IFormProps) => {
         values,
         valid: dirty ? false : true,
       };
+
       // * Set current form.
       setCurrentForm(newForm);
+
       // * Save forms.
       setForms(await saveForm(forms, newForm));
+
       // * Dispatch values.
       props.get_values && props.get_values(_values);
     }
@@ -84,6 +90,7 @@ const Formly: FunctionComponent<IFormProps> = (props: IFormProps) => {
   const onChange = async (data: any): Promise<void> => {
     let values = currentForm.values;
 
+    // * check and validate fields.
     const _fields = await Promise.all(
       currentForm.fields.map(async (field: IField) => {
         if (field.name === data.field_name) {
@@ -91,10 +98,8 @@ const Formly: FunctionComponent<IFormProps> = (props: IFormProps) => {
           field.value = data.value;
           values[`${field.name}`] = data.value;
         }
-
         // * Preprocess and validate field.
         field = await preprocess_and_validate_field(currentForm, field, values);
-
         return field;
       })
     );
@@ -125,7 +130,11 @@ const Formly: FunctionComponent<IFormProps> = (props: IFormProps) => {
     // * Dispatch values.
     props.get_values && props.get_values(_values);
     if (props.onChange) {
-      props.onChange({ values: currentForm.values, valid: newForm.valid });
+      props.onChange({
+        form_name: props.form_name,
+        values: currentForm.values,
+        valid: newForm.valid,
+      });
     }
   };
 
@@ -169,7 +178,7 @@ const Formly: FunctionComponent<IFormProps> = (props: IFormProps) => {
         <p>
           <code>
             <b>
-              Error! Detect duplicate fields(name or id attributes), make sure
+              Error!s Detect duplicate fields(name or id attributes), make sure
               you put unique name and id for each field.
             </b>
           </code>

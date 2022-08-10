@@ -98,6 +98,7 @@ export interface IPropsTag {
 export interface IValue {
   form_name: string;
   values: any;
+  valid: boolean;
 }
 
 export interface ISubmit {

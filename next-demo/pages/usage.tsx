@@ -10,7 +10,6 @@ const classButton =
 const Usage: NextPage = () => {
   // * Declare form.
   const form_name = "formly_fetch_data";
-  // const _fields: IField[] = [
   const _fieldsA: IField[] = [
     {
       type: "input",

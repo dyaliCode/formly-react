@@ -122,7 +122,7 @@ export default function Form() {
         fields={fieldsB}
         form_name="myformB"
         onSubmit={onSubmit}
-        // onChange={onChange}
+        onChange={onChange}
         btnSubmit={{
           classes: classButton,
         }}
@@ -146,7 +146,7 @@ export default function Form() {
       </pre>
       <h2>Form A</h2>
       {FormA}
-
+      <hr />
       <h2>Form B</h2>
       {FormB}
     </div>
