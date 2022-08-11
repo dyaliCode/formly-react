@@ -109,3 +109,29 @@ h4 {
 img {
   border-radius: .5rem;
 }
+
+/* Logos Frameworks */
+.logos-frameworks {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 4rem;
+}
+.logos-frameworks .item {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  /* box-shadow: var(--shadow); */
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transition: all 250ms ease-in-out;
+  color: #a7bfe8;
+  /* background-color: #1e222a; */
+  border-radius: 2rem;
+  /* padding: 1rem 1.5rem; */
+  border: none;
+  font-size: 1rem;
+  padding: 0.5rem;
+}
