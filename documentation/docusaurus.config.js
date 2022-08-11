@@ -31,7 +31,6 @@ module.exports = {
           to: "gettingstarted/quickstart",
           label: "Docs",
           position: "left"
-          
         },
         {
           href: "https://github.com/dyaliCode/formlyjs",
