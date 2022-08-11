@@ -9,7 +9,7 @@ import TabItem from '@theme/TabItem';
 
 ## Introduction
 
-With Svelte Formly you can generate a dynamic forms with custom rules and styles for web application's sveltejs and sveltekit.
+With FormlyJS you can generate a dynamic forms with custom rules and styles for web application's react, solid and svelte.
 
 :::info Advantages
 
