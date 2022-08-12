@@ -48,6 +48,8 @@ export interface IField {
   preprocess?: Function; // for now
   validation?: any;
   file?: IFileRules;
+  multiple?: boolean;
+  duplicated?: boolean;
 }
 
 export interface IPropsField {

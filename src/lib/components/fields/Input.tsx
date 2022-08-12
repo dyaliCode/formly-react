@@ -59,6 +59,7 @@ const Input: FunctionComponent<IPropsField> = ({
       max={field.attributes.max}
       step={field.attributes.step}
       autoComplete={field.attributes.autocomplete}
+      autoCorrect={field.attributes.autocorrect}
       onChange={onInput}
     />
   );

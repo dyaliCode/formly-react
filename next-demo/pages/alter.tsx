@@ -51,7 +51,7 @@ const Alter: NextPage = () => {
           form_name={form_name}
           btnSubmit={{
             text: "Send",
-            classes: classButtonSubmit,
+            classes: [classButtonSubmit],
             prefix: {
               tag: "div",
               classes: ["p-4 bg-pink-500"],
@@ -59,7 +59,7 @@ const Alter: NextPage = () => {
           }}
           btnReset={{
             // text: "Cancel",
-            classes: classButtonReset,
+            classes: [classButtonReset],
             prefix: {
               tag: "div",
               classes: ["p-4 bg-sky-500"],

@@ -100,7 +100,7 @@ const Usage: NextPage = () => {
         onSubmit={onSubmit}
         btnSubmit={{
           // text: "Send",
-          classes: classButton,
+          classes: [classButton],
           prefix: {
             tag: "div",
             // classes: ["mt-6"],
@@ -108,7 +108,7 @@ const Usage: NextPage = () => {
         }}
         btnReset={{
           // text: "Cancel",
-          classes: classButton,
+          classes: [classButton],
           prefix: {
             tag: "div",
             // classes: ["mt-6"],
@@ -131,7 +131,7 @@ const Usage: NextPage = () => {
         onSubmit={onSubmit}
         btnSubmit={{
           // text: "Send",
-          classes: classButton,
+          classes: [classButton],
           prefix: {
             tag: "div",
             // classes: ["mt-6"],
@@ -139,7 +139,7 @@ const Usage: NextPage = () => {
         }}
         btnReset={{
           // text: "Cancel",
-          classes: classButton,
+          classes: [classButton],
           prefix: {
             tag: "div",
             // classes: ["mt-6"],

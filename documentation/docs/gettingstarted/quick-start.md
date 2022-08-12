@@ -79,15 +79,7 @@ With FormlyJS you can generate a dynamic forms with custom rules and styles for 
         attributes: {
           id: "firstname",
           placeholder: "First name",
-          autocomplete: "off",
-          autocorrect: "off",
-          classes: ["form-control"],
         },
-        prefix: {
-          tag: "div",
-          classes: ["form-group"],
-        },
-        rules: ["required", "min:6"],
       },
       {
         type: "input",
@@ -95,15 +87,7 @@ With FormlyJS you can generate a dynamic forms with custom rules and styles for 
         attributes: {
           id: "lastname",
           placeholder: "Last name",
-          autocomplete: "off",
-          autocorrect: "off",
-          classes: ["form-control"],
         },
-        prefix: {
-          tag: "div",
-          classes: ["form-group"],
-        },
-        rules: ["required", "min:6"],
       },
     ];
 
@@ -123,27 +107,6 @@ With FormlyJS you can generate a dynamic forms with custom rules and styles for 
         form_name={form_name}
         onChange={onChange}
         onSubmit={onSubmit}
-        btnSubmit={{
-          text: "Send",
-          classes: ['class-btn-submit'],
-          prefix: {
-            tag: "div",
-            classes: ["class-wrapper-btn-submit"],
-          },
-        }}
-        btnReset={{
-          text: "Cancel",
-          classes: ['class-btn-reset'],
-          prefix: {
-            tag: "div",
-            classes: ["class-wrapper-btn-reset"],
-          },
-        }}
-        buttonsAction={{
-          tag: "div",
-          classes: ["class-wrapper-btn-actions"],
-        }}
-        classes={["class-form-a", "class-form-b"]}
       />
     );
   };

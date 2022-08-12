@@ -3,7 +3,7 @@ import React, {
   useEffect,
   useState,
   memo,
-  useRef,
+  // useRef,
 } from "react";
 import {
   isFieldDuplicated,
@@ -12,12 +12,13 @@ import {
   IFormProps,
   preprocess_and_validate_field,
   saveForm,
+  duplicateField,
 } from "../utils";
 import Action from "./buttons/Action";
 import Field from "./Field";
 
-const Formly: FunctionComponent<IFormProps> = (props: IFormProps) => {
-  const elForm: any = useRef();
+const Formly = (props: IFormProps) => {
+  // const elForm: any = useRef();
   const [forms, setForms] = useState<IForm[]>([]);
   const [currentForm, setCurrentForm] = useState<IForm>({
     form_name: props.form_name,
@@ -148,7 +149,7 @@ const Formly: FunctionComponent<IFormProps> = (props: IFormProps) => {
 
   // * Reset form.
   const onResetHandler = async (e: React.FormEvent): Promise<void> => {
-    elForm.current.reset();
+    // elForm.current.reset();
     let values: any = {};
     let __fields: any = await Promise.all(
       currentForm.fields.map(async (field: IField) => {
@@ -172,6 +173,24 @@ const Formly: FunctionComponent<IFormProps> = (props: IFormProps) => {
     props.get_values && props.get_values(_values);
   };
 
+  // * duplicate field.
+  const duplicFieldHandler = (selectedField: IField, index: number): void => {
+    const fields_form: IField[] = duplicateField(
+      currentForm,
+      index,
+      selectedField
+    );
+    setCurrentForm({ ...currentForm, fields: fields_form });
+  };
+
+  // * Remove field.
+  const removeFieldHandler = (selectedField: IField, index: number): void => {
+    const fields_form: IField[] = currentForm.fields.filter(
+      (field: IField) => field.name !== selectedField.name
+    );
+    setCurrentForm({ ...currentForm, fields: fields_form });
+  };
+
   return (
     <>
       {fieldDuplicated ? (
@@ -186,18 +205,46 @@ const Formly: FunctionComponent<IFormProps> = (props: IFormProps) => {
       ) : (
         <form
           className={props.classes ? props.classes.join(" ") : undefined}
-          ref={elForm}
+          // ref={elForm}
           onSubmit={onSubmitHandler}
           onReset={onResetHandler}
         >
-          {currentForm.fields.map((field) => {
+          {currentForm.fields.map((field: IField, index: number) => {
             return (
-              <Field
-                key={field.name}
-                form_name={props.form_name}
-                field={field}
-                changeValue={onChange}
-              />
+              <React.Fragment key={index}>
+                <Field
+                  form_name={props.form_name}
+                  field={field}
+                  changeValue={onChange}
+                />
+                {field.multiple && (
+                  <button
+                    key={field.name}
+                    style={{
+                      padding: "6px",
+                      margin: "6px",
+                      backgroundColor: "skyblue",
+                    }}
+                    type="button"
+                    onClick={() => duplicFieldHandler(field, index)}
+                  >
+                    +
+                  </button>
+                )}
+                {field.duplicated && (
+                  <button
+                    style={{
+                      padding: "6px",
+                      margin: "6px",
+                      backgroundColor: "skyblue",
+                    }}
+                    type="button"
+                    onClick={() => removeFieldHandler(field, index)}
+                  >
+                    -
+                  </button>
+                )}
+              </React.Fragment>
             );
           })}
           <Action

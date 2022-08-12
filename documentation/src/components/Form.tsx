@@ -1,6 +1,8 @@
 import { Formly, IField, IValue } from "formly-react";
 
-const Usage = () => {
+import React, { FC } from "react";
+
+const Usage: FC = () => {
   // * Unique form name.
   const form_name = "formly_usage";
 
@@ -51,12 +53,15 @@ const Usage = () => {
   };
 
   return (
-    <Formly
-      fields={fields}
-      form_name={form_name}
-      // onChange={onChange}
-      // onSubmit={onSubmit}
-    />
+    <>
+      <Formly
+        fields={fields}
+        form_name={form_name}
+        // onChange={onChange}
+        // onSubmit={onSubmit}
+      />
+      <h1>ok</h1>
+    </>
   );
 };
 
