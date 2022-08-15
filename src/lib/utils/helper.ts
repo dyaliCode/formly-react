@@ -66,34 +66,3 @@ export function createComponentWithPrefix(
     children
   );
 }
-
-// *
-export function duplicateField(
-  form: IForm,
-  index: number,
-  field: IField
-): IField[] {
-  const formFields = form.fields;
-  let cloneField: IField = { ...field };
-
-  cloneField = {
-    ...cloneField,
-    multiple: false,
-    duplicated: true,
-    value: undefined,
-    name: `${field.name}_${formFields.length + 1}`,
-  };
-
-  cloneField = {
-    ...cloneField,
-    attributes: {
-      ...cloneField.attributes,
-      label: `${field.attributes.label}_${formFields.length + 1}`,
-    },
-  };
-
-  return formFields.reduce(function (s: IField[], a, i) {
-    i === index + 1 ? s.push(cloneField, a) : s.push(a);
-    return s;
-  }, []);
-}

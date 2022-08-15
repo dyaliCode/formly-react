@@ -4,7 +4,7 @@ export interface IFormProps {
   btnSubmit?: IBtnSubmit;
   btnReset?: IBtnReset;
   realtime?: boolean;
-  get_values?: Function;
+  getValues?: Function;
   onSubmit?: Function;
   onChange?: Function;
   classes?: string[];

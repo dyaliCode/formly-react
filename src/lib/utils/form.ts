@@ -48,3 +48,34 @@ export async function preprocess_and_validate_field(
 
   return field;
 }
+
+// *
+export function duplicateField(
+  form: IForm,
+  field: IField,
+  index: number
+): IField[] {
+  const formFields = form.fields;
+  let cloneField: IField = { ...field };
+
+  cloneField = {
+    ...cloneField,
+    duplicated: true,
+    multiple: false,
+    value: undefined,
+    name: `${field.name}_${formFields.length + 1}`,
+  };
+
+  cloneField = {
+    ...cloneField,
+    attributes: {
+      ...cloneField.attributes,
+      label: `${field.attributes.label} ${formFields.length + 1}`,
+    },
+  };
+
+  return formFields.reduce(function (s: IField[], a, i) {
+    i === index ? s.push(cloneField, a) : s.push(a);
+    return s;
+  }, []);
+}

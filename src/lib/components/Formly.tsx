@@ -1,10 +1,4 @@
-import React, {
-  FunctionComponent,
-  useEffect,
-  useState,
-  memo,
-  // useRef,
-} from "react";
+import React, { useEffect, useState, memo, useRef } from "react";
 import {
   isFieldDuplicated,
   IField,
@@ -18,7 +12,7 @@ import Action from "./buttons/Action";
 import Field from "./Field";
 
 const Formly = (props: IFormProps) => {
-  // const elForm: any = useRef();
+  const elForm: any = useRef();
   const [forms, setForms] = useState<IForm[]>([]);
   const [currentForm, setCurrentForm] = useState<IForm>({
     form_name: props.form_name,
@@ -26,8 +20,8 @@ const Formly = (props: IFormProps) => {
     values: {},
     valid: true,
   });
-  const [_fields, _setFields] = useState<IField[]>(props.fields);
-  const [_values, _setValues] = useState<any>({});
+  // const [fieldsState, setFieldsState] = useState<IField[]>(props.fields);
+  const [valuesState, setValuesState] = useState<any>({});
   const [fieldDuplicated, setFieldDuplicated] = useState<boolean>(false);
 
   // * Init formly.
@@ -39,7 +33,7 @@ const Formly = (props: IFormProps) => {
     async function init() {
       let values: any = currentForm.values ?? {};
       // * Check and validate fields.
-      const fields_updated = await Promise.all(
+      const updatedFields = await Promise.all(
         props.fields.map(async (field: IField) => {
           values[`${field.name}`] = field.value ?? null;
           // * Preprocess and validate field.
@@ -51,10 +45,10 @@ const Formly = (props: IFormProps) => {
           return field;
         })
       );
-      _setFields(fields_updated);
+      // setFieldsState(updatedFields);
 
       // * Find dirty in the current form.
-      const dirty = fields_updated.find((field: IField) => {
+      const dirty = updatedFields.find((field: IField) => {
         if (field.validation) {
           return field.validation.dirty === true;
         }
@@ -62,12 +56,12 @@ const Formly = (props: IFormProps) => {
       });
 
       // * Set values.
-      _setValues(values);
+      setValuesState(values);
 
       // * Get form.
       const newForm = {
         ...currentForm,
-        fields: fields_updated,
+        fields: updatedFields,
         values,
         valid: dirty ? false : true,
       };
@@ -79,7 +73,7 @@ const Formly = (props: IFormProps) => {
       setForms(await saveForm(forms, newForm));
 
       // * Dispatch values.
-      props.get_values && props.get_values(_values);
+      props.getValues && props.getValues(valuesState);
     }
 
     init();
@@ -92,7 +86,7 @@ const Formly = (props: IFormProps) => {
     let values = currentForm.values;
 
     // * check and validate fields.
-    const _fields = await Promise.all(
+    const listFields = await Promise.all(
       currentForm.fields.map(async (field: IField) => {
         if (field.name === data.field_name) {
           values["touched"] = field.name;
@@ -106,7 +100,7 @@ const Formly = (props: IFormProps) => {
     );
 
     // * Find dirty in the current form.
-    const dirty = _fields.find((field: IField) => {
+    const dirty = listFields.find((field: IField) => {
       if (field.validation) {
         return field.validation.dirty === true;
       }
@@ -114,12 +108,12 @@ const Formly = (props: IFormProps) => {
     });
 
     // * Values.
-    _setValues(values);
+    setValuesState(values);
 
     // * Form.
     const newForm = {
       ...currentForm,
-      fields: _fields,
+      fields: listFields,
       values: values,
       valid: dirty ? false : true,
     };
@@ -129,7 +123,7 @@ const Formly = (props: IFormProps) => {
     setForms(await saveForm(forms, newForm));
 
     // * Dispatch values.
-    props.get_values && props.get_values(_values);
+    props.getValues && props.getValues(valuesState);
     if (props.onChange) {
       props.onChange({
         form_name: props.form_name,
@@ -143,15 +137,19 @@ const Formly = (props: IFormProps) => {
   const onSubmitHandler = async (e: React.FormEvent): Promise<void> => {
     e.preventDefault();
     if (props.onSubmit) {
-      props.onSubmit({ values: currentForm.values, valid: currentForm.valid });
+      props.onSubmit({
+        form_name: props.form_name,
+        values: currentForm.values,
+        valid: currentForm.valid,
+      });
     }
   };
 
   // * Reset form.
   const onResetHandler = async (e: React.FormEvent): Promise<void> => {
-    // elForm.current.reset();
+    elForm.current.reset();
     let values: any = {};
-    let __fields: any = await Promise.all(
+    let listFields: any = await Promise.all(
       currentForm.fields.map(async (field: IField) => {
         field.value = null;
         values[field.name] = null;
@@ -160,9 +158,9 @@ const Formly = (props: IFormProps) => {
       })
     );
 
-    const _currentForm = { ...currentForm, fields: __fields, values };
+    const _currentForm = { ...currentForm, fields: listFields, values };
 
-    _setFields(__fields);
+    // setFieldsState(listFields);
 
     setCurrentForm(_currentForm);
 
@@ -170,25 +168,29 @@ const Formly = (props: IFormProps) => {
     setForms(await saveForm(forms, _currentForm));
 
     // Dispatch values.
-    props.get_values && props.get_values(_values);
+    props.getValues && props.getValues(valuesState);
   };
 
   // * duplicate field.
   const duplicFieldHandler = (selectedField: IField, index: number): void => {
     const fields_form: IField[] = duplicateField(
       currentForm,
-      index,
-      selectedField
+      selectedField,
+      index
     );
     setCurrentForm({ ...currentForm, fields: fields_form });
   };
 
   // * Remove field.
-  const removeFieldHandler = (selectedField: IField, index: number): void => {
-    const fields_form: IField[] = currentForm.fields.filter(
-      (field: IField) => field.name !== selectedField.name
-    );
-    setCurrentForm({ ...currentForm, fields: fields_form });
+  const removeFieldHandler = (selectedField: IField): void => {
+    let values: any = {};
+    const fields_form: IField[] = currentForm.fields.filter((field: IField) => {
+      if (field.name !== selectedField.name) {
+        values[field.name] = field.value;
+        return true;
+      }
+    });
+    setCurrentForm({ ...currentForm, fields: fields_form, values });
   };
 
   return (
@@ -205,7 +207,7 @@ const Formly = (props: IFormProps) => {
       ) : (
         <form
           className={props.classes ? props.classes.join(" ") : undefined}
-          // ref={elForm}
+          ref={elForm}
           onSubmit={onSubmitHandler}
           onReset={onResetHandler}
         >
@@ -239,7 +241,7 @@ const Formly = (props: IFormProps) => {
                       backgroundColor: "skyblue",
                     }}
                     type="button"
-                    onClick={() => removeFieldHandler(field, index)}
+                    onClick={() => removeFieldHandler(field)}
                   >
                     -
                   </button>
